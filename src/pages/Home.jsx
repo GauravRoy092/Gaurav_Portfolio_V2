@@ -132,9 +132,9 @@ const Home = () => {
             <Link 
               to="/projects" 
               className="stat-card stat-card-link"
-              aria-label="View Projects: 53K+ Records Analyzed"
+              aria-label="View Projects: 2.3M+ Records Analyzed"
             >
-              <span className="stat-number">53K+</span>
+              <span className="stat-number">2.3M+</span>
               <span className="stat-label">Records Analyzed</span>
               <span className="stat-action">
                 View Projects <span className="stat-arrow">→</span>

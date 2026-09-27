@@ -65,6 +65,58 @@ export const experience = [
 
 export const projects = [
   {
+    title: 'Consumer Credit Exposure & Portfolio Risk Diagnostics',
+    domain: 'Consumer Finance & Credit Risk',
+    featured: true,
+    date: 'Sept 2026',
+    scale: '2.26M+ Loan Records',
+    tech: ['Python', 'SQL', 'Plotly', 'Pandas', 'Seaborn', 'ipywidgets', 'Jupyter'],
+    githubUrl: 'https://github.com/GauravRoy092/credit_portfolio_exposure',
+    image: '/images/projects/credit_risk_heatmap.png',
+    summary: 'Analyzed a large-scale, real-world consumer credit dataset (~2.26 million historical loan records) to mathematically isolate core drivers of default risk, volume paradoxes, and capital allocation vulnerabilities.',
+    bullets: [
+      'Engineered SQL aggregation pipelines across 2.26M+ records, segmenting borrowers into custom income tiers, housing status, and purpose-driven risk cohorts.',
+      'Discovered the Volume vs. Risk Paradox: While Debt Consolidation drove origination volumes, Small Business loans exhibited peak default risk with nearly 30% charge-off rates.',
+      'Debunked the "Income Insulation Myth": Statistically proved high-income borrowers default at rates comparable to lower-income tiers due to severe debt-to-income (DTI) over-leverage.',
+      'Isolated Collateral Discrepancies: Identified that renters exhibit a baseline default rate ~5% higher than active mortgage holders despite securing lower average principal sizes.',
+      'Architected an interactive diagnostics dashboard with Plotly Express and ipywidgets featuring dynamic heatmap gradients to evaluate portfolio exposure and charge-off velocity in real time.'
+    ],
+    insights: [
+      {
+        title: 'Volume vs. Risk Paradox',
+        description: 'Debt Consolidation drove the majority of originations, but Small Business loans showed peak default risk (~30% charge-off).'
+      },
+      {
+        title: 'Income Insulation Myth',
+        description: 'High annual income does not proportionally mitigate default risk; elevated DTI leverage caused similar default rates across income tiers.'
+      },
+      {
+        title: 'Collateral Discrepancy',
+        description: 'Renters exhibited a baseline default rate ~5% higher than mortgage holders despite borrowing smaller average principal amounts.'
+      }
+    ],
+    phases: [
+      {
+        phase: 'Phase 1',
+        title: 'Data Architecture & SQL Aggregation',
+        description: 'Segmented borrowers into income brackets and isolated baseline default percentages across housing collateral with custom SQL querying.'
+      },
+      {
+        phase: 'Phase 2',
+        title: 'Exploratory Data Analysis (EDA)',
+        description: 'Constructed visual wireframes with Matplotlib & Seaborn, mapping historical macro default distribution and 10-year origination trajectories.',
+        image: '/images/projects/origination_volume_trend.png'
+      },
+      {
+        phase: 'Phase 3 & 4',
+        title: 'Business Logic & Interactive Dashboard',
+        description: 'Transitioned queries into an interactive Plotly Express & ipywidgets dashboard featuring heatmap gradients to highlight capital exposure in real time.',
+        image: '/images/projects/credit_risk_heatmap.png'
+      }
+    ],
+    hasDemo: true
+  },
+  {
     title: 'Inventory Quality & Operations Analytics',
     tech: ['Excel', 'Power BI', 'Data Modeling'],
     date: 'Jan 2024',
@@ -72,7 +124,7 @@ export const projects = [
       'Analyzed 53,000+ records (~₹17M in inventory value) to surface 8+ business growth opportunities, translating raw data into clear optimization strategies.',
       'Designed 4 interactive dashboards tracking 18 KPIs, reducing manual reporting overhead by 25% and enabling self-serve analytics for stakeholders.'
     ],
-    hasDemo: true
+    hasDemo: false
   },
   {
     title: 'Web Data Collection & Automation',
@@ -82,7 +134,7 @@ export const projects = [
       'Developed automated data collection workflows using AI-powered tools to aggregate data from 6+ heterogeneous sources, capturing 3,500+ records with minimal manual intervention.',
       'Documented end-to-end solution architecture and data preparation processes, enabling efficient troubleshooting and seamless post-production support.'
     ],
-    hasDemo: true
+    hasDemo: false
   }
 ]
 
