@@ -6,7 +6,7 @@ export const personalInfo = {
   email: 'royg4250@gmail.com',
   phone: '07303528514',
   portfolio: 'gauravroy-portfolio.netlify.app',
-  github: 'gaurav-royy',
+  github: 'GauravRoy092',
   linkedin: 'gaurav-roy-6580b222b'
 }
 
