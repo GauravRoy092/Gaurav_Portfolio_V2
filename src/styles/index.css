@@ -1195,6 +1195,7 @@ img { max-width: 100%; display: block; }
 
 .modal-tabs {
   display: flex;
+  flex: 0 0 auto;
   gap: 0.5rem;
   padding: 0.75rem var(--space-md);
   background: var(--bg-primary);
@@ -1230,7 +1231,8 @@ img { max-width: 100%; display: block; }
 .modal-body {
   padding: var(--space-md);
   overflow-y: auto;
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .tab-pane {

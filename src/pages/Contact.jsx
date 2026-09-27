@@ -11,11 +11,38 @@ const Contact = () => {
   }, []);
 
   const [formStatus, setFormStatus] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormStatus('success');
-    setTimeout(() => setFormStatus(null), 5000);
+    setFormStatus(null);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    formData.append('access_key', 'd169629b-8f99-44c5-8738-4647811077b4');
+    formData.set('subject', 'New portfolio contact message');
+    formData.set('from_name', 'Gaurav Roy Portfolio');
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error('Form submission failed');
+      }
+
+      form.reset();
+      setFormStatus('success');
+      setTimeout(() => setFormStatus(null), 5000);
+    } catch {
+      setFormStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -69,22 +96,25 @@ const Contact = () => {
               transition={{ duration: 0.4, ease: 'easeOut', delay: 0.1 }}
             >
               <form className="contact-form" onSubmit={handleSubmit}>
+                <input type="checkbox" name="botcheck" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" aria-hidden="true" />
                 <div className="form-group">
-                  <input type="text" id="name" required placeholder=" " />
+                  <input type="text" id="name" name="name" required placeholder=" " />
                   <label htmlFor="name">Name</label>
                 </div>
                 
                 <div className="form-group">
-                  <input type="email" id="email" required placeholder=" " />
+                  <input type="email" id="email" name="email" required placeholder=" " />
                   <label htmlFor="email">Email</label>
                 </div>
                 
                 <div className="form-group">
-                  <textarea id="message" required rows="4" placeholder=" "></textarea>
+                  <textarea id="message" name="message" required rows="4" placeholder=" "></textarea>
                   <label htmlFor="message">Message</label>
                 </div>
                 
-                <button type="submit" className="btn btn-primary submit-btn">Send Message</button>
+                <button type="submit" className="btn btn-primary submit-btn" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending…' : 'Send Message'}
+                </button>
                 
                 {formStatus === 'success' && (
                   <motion.div 
@@ -93,6 +123,11 @@ const Contact = () => {
                     animate={{ opacity: 1, y: 0 }}
                   >
                     ✅ Message sent successfully! I'll get back to you soon.
+                  </motion.div>
+                )}
+                {formStatus === 'error' && (
+                  <motion.div className="form-success" role="alert" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+                    Sorry, your message could not be sent. Please try again or email me directly.
                   </motion.div>
                 )}
               </form>
