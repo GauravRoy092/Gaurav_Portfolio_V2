@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { summary, skills, education, certifications } from '../data/resume';
+import { summary, skills, education, certifications, personalInfo } from '../data/resume';
 import PageTransition from '../components/PageTransition';
 import GeometricBackground from '../components/GeometricBackground';
 import SectionHeader from '../components/SectionHeader';
 import SkillTag from '../components/SkillTag';
 
 const categoryLabels = {
-  engineering: 'Engineering & Systems',
-  analytics: 'Analytics & Tools',
-  core: 'Core Competencies',
+  engineering: 'Robotics, Linux & Systems',
+  analytics: 'Analytics & Quantitative Tools',
+  core: 'Systems Thinking & Practices',
 };
 
-const categoryColors = {
-  engineering: '#4285F4',
-  analytics: '#EA4335',
-  core: '#34A853',
+const categoryDescriptions = {
+  engineering: 'Kernel diagnostics, robotic fleet telemetry, and automated data pipeline infrastructure.',
+  analytics: 'Exploratory data analysis, SQL aggregations, Python data modeling, and executive BI dashboards.',
+  core: 'Cross-functional engineering pods, reliability standards, and root-cause diagnostic workflows.',
 };
 
 const About = () => {
@@ -28,14 +28,14 @@ const About = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.06
+        staggerChildren: 0.05
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } }
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } }
   };
 
   return (
@@ -43,37 +43,78 @@ const About = () => {
       <div className="about-page">
         <GeometricBackground variant="about" />
         <div className="page-container">
-          <SectionHeader title="About Me" subtitle="A bit about my background and what I bring to the table" />
+          <SectionHeader 
+            eyebrow="PROFILE & CAPABILITIES"
+            title="Systems Engineering & Empirical Analytics" 
+            subtitle="Bridging real-world robotics hardware, Linux diagnostic telemetry, and data intelligence." 
+          />
           
+          {/* Editorial Bio Card */}
           <motion.div 
-            className="about-content"
+            className="about-editorial-card"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <p className="about-summary-text">{summary}</p>
+            <div className="bio-lead-block">
+              <span className="bio-quote-spark">✦</span>
+              <p className="about-summary-lead">
+                {summary}
+              </p>
+            </div>
+
+            <div className="bio-quick-facts">
+              <div className="quick-fact-item">
+                <span className="fact-label">CURRENT ROLE</span>
+                <span className="fact-value">Robotics Engineer @ GreyOrange</span>
+              </div>
+              <div className="quick-fact-item">
+                <span className="fact-label">CORE DOMAINS</span>
+                <span className="fact-value">Fleet Telemetry · Linux · Data Pipelines</span>
+              </div>
+              <div className="quick-fact-item">
+                <span className="fact-label">BASE</span>
+                <span className="fact-value">{personalInfo.location}</span>
+              </div>
+              <div className="quick-fact-item">
+                <span className="fact-label">CREDENTIAL</span>
+                <span className="fact-value">Google Data Analytics Certified</span>
+              </div>
+            </div>
           </motion.div>
 
+          {/* Technical Skills & Capabilities */}
           <div className="skills-section">
-            <h3 className="skills-heading">Skills</h3>
+            <div className="section-eyebrow">
+              <span className="eyebrow-spark">✦</span>
+              <span className="eyebrow-text">TECHNICAL CAPABILITIES</span>
+            </div>
+            <h3 className="skills-heading">Engineering & Analytical Toolchain</h3>
+            <p className="skills-subtext">
+              Categorized toolsets utilized across autonomous fleet deployments and large-scale data investigations.
+            </p>
+
             <div className="skills-grid">
-              {Object.entries(skills).map(([category, skillList]) => (
+              {Object.entries(skills).map(([category, skillList], catIdx) => (
                 <motion.div 
                   key={category} 
                   className="skill-category"
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, margin: "-50px" }}
+                  viewport={{ once: true, margin: "-40px" }}
                   variants={containerVariants}
                 >
-                  <h4 className="category-title">
-                    <span className="category-dot" style={{ backgroundColor: categoryColors[category] }}></span>
-                    {categoryLabels[category]}
-                  </h4>
+                  <div className="category-header">
+                    <span className="category-index">0{catIdx + 1}</span>
+                    <div>
+                      <h4 className="category-title">{categoryLabels[category]}</h4>
+                      <p className="category-desc">{categoryDescriptions[category]}</p>
+                    </div>
+                  </div>
                   <div className="tags-container">
                     {skillList.map((skill, index) => (
                       <motion.div key={index} variants={itemVariants}>
-                        <SkillTag label={skill} color={categoryColors[category]} />
+                        <SkillTag label={skill} variant={category === 'engineering' ? 'terracotta' : 'default'} />
                       </motion.div>
                     ))}
                   </div>
@@ -82,58 +123,74 @@ const About = () => {
             </div>
           </div>
 
-          <div className="education-section">
-            <h3 className="skills-heading">Education</h3>
-            <motion.div 
-              className="education-card"
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className="edu-header">
-                <div>
-                  <h4 className="edu-degree">{education.degree} — {education.field}</h4>
-                  <p className="edu-institution">{education.institution}</p>
-                </div>
-                <span className="edu-duration">{education.duration}</span>
+          {/* Education & Credentials */}
+          <div className="credentials-split-grid">
+            <div className="education-section">
+              <div className="section-eyebrow">
+                <span className="eyebrow-spark">✦</span>
+                <span className="eyebrow-text">ACADEMIC FOUNDATION</span>
               </div>
-              <div className="edu-body">
-                <span className="edu-cgpa">CGPA: {education.cgpa}</span>
-              </div>
-            </motion.div>
-          </div>
+              <h3 className="skills-heading">Education</h3>
 
-          <div className="certifications-section">
-            <h3 className="skills-heading">Certifications</h3>
-            {certifications.map((cert, index) => (
               <motion.div 
-                key={index}
-                className="certification-card"
+                className="education-card"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                transition={{ duration: 0.4 }}
               >
-                <div className="cert-badge" style={{ backgroundColor: cert.color }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                    <path d="M12 2L14.09 8.26L20 9.27L15.55 13.97L16.91 20L12 16.9L7.09 20L8.45 13.97L4 9.27L9.91 8.26L12 2Z"/>
-                  </svg>
+                <div className="edu-header">
+                  <div>
+                    <h4 className="edu-degree">{education.degree} in {education.field}</h4>
+                    <p className="edu-institution">{education.institution}</p>
+                  </div>
+                  <span className="edu-duration">{education.duration}</span>
                 </div>
-                <div className="cert-info">
-                  <h4 className="cert-title">{cert.title}</h4>
-                  <p className="cert-issuer">Issued by {cert.issuer} · {cert.date}</p>
+                <div className="edu-body">
+                  <div className="edu-badge-row">
+                    <span className="edu-cgpa-badge">CGPA: {education.cgpa} / 10.0</span>
+                    <span className="edu-specialization">Hardware & Embedded Systems Focus</span>
+                  </div>
                 </div>
-                <a 
-                  href={cert.credentialUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="btn btn-secondary btn-sm"
-                >
-                  View Credential →
-                </a>
               </motion.div>
-            ))}
+            </div>
+
+            <div className="certifications-section">
+              <div className="section-eyebrow">
+                <span className="eyebrow-spark">✦</span>
+                <span className="eyebrow-text">VERIFIED CERTIFICATIONS</span>
+              </div>
+              <h3 className="skills-heading">Certifications</h3>
+
+              {certifications.map((cert, index) => (
+                <motion.div 
+                  key={index}
+                  className="certification-card"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                >
+                  <div className="cert-badge">
+                    <span className="cert-spark">✦</span>
+                  </div>
+                  <div className="cert-info">
+                    <h4 className="cert-title">{cert.title}</h4>
+                    <p className="cert-issuer">Issued by {cert.issuer} · {cert.date}</p>
+                    <span className="cert-domain">Data Cleaning · SQL · R & Python · Visualization</span>
+                  </div>
+                  <a 
+                    href={cert.credentialUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn btn-secondary btn-sm cert-btn"
+                  >
+                    <span>Verify Credential</span>
+                    <span>↗</span>
+                  </a>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

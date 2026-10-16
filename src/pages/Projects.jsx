@@ -36,17 +36,17 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15
+        staggerChildren: 0.12
       }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 18 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.4, ease: 'easeOut' } 
+      transition: { duration: 0.45, ease: 'easeOut' } 
     }
   };
 
@@ -56,8 +56,9 @@ const Projects = () => {
         <GeometricBackground variant="projects" />
         <div className="page-container">
           <SectionHeader 
-            title="Projects" 
-            subtitle="Data engineering, predictive analytics, and business intelligence systems" 
+            eyebrow="EMPIRICAL INVESTIGATIONS"
+            title="Case Studies & Analytical Systems" 
+            subtitle="Large-scale consumer credit diagnostics, telemetry logging, and operational automation architectures." 
           />
           
           <motion.div 
@@ -75,7 +76,10 @@ const Projects = () => {
                     variants={cardVariants}
                   >
                     <div className="featured-badge-row">
-                      <span className="featured-tag">⭐ FEATURED CASE STUDY</span>
+                      <span className="featured-tag">
+                        <span className="badge-spark">✦</span>
+                        <span>FLAGSHIP CASE STUDY</span>
+                      </span>
                       {project.domain && <span className="domain-tag">{project.domain}</span>}
                       {project.scale && <span className="scale-tag">{project.scale}</span>}
                     </div>
@@ -90,7 +94,7 @@ const Projects = () => {
                     
                     <div className="project-tech">
                       {project.tech.map((tech, idx) => (
-                        <SkillTag key={idx} label={tech} />
+                        <SkillTag key={idx} label={tech} variant="terracotta" />
                       ))}
                     </div>
 
@@ -99,7 +103,10 @@ const Projects = () => {
                       <div className="featured-insights-grid">
                         {project.insights.map((insight, idx) => (
                           <div key={idx} className="insight-mini-card">
-                            <span className="insight-mini-title">{insight.title}</span>
+                            <div className="insight-card-top">
+                              <span className="insight-mini-num">0{idx + 1}</span>
+                              <span className="insight-mini-title">{insight.title}</span>
+                            </div>
                             <p className="insight-mini-desc">{insight.description}</p>
                           </div>
                         ))}
@@ -122,16 +129,23 @@ const Projects = () => {
                           src={project.image} 
                           alt="Credit Risk Interactive Heatmap Dashboard" 
                           className="project-preview-img"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <div className="preview-overlay">
-                          <span className="preview-cta">🔍 Click to Explore Analytics & Charts</span>
+                          <span className="preview-cta">
+                            <span className="preview-spark">✦</span> Inspect Heatmap & Empirical Charts
+                          </span>
                         </div>
                       </div>
                     )}
 
                     <ul className="project-details">
                       {project.bullets.map((bullet, idx) => (
-                        <li key={idx}>{bullet}</li>
+                        <li key={idx}>
+                          <span className="bullet-chevron">›</span>
+                          <span className="bullet-text">{bullet}</span>
+                        </li>
                       ))}
                     </ul>
 
@@ -143,7 +157,8 @@ const Projects = () => {
                           setActiveTab('insights');
                         }}
                       >
-                        📊 View Case Study & Visuals
+                        <span>Explore Full Technical Report</span>
+                        <span className="btn-arrow">→</span>
                       </button>
                       
                       {project.githubUrl && (
@@ -153,10 +168,10 @@ const Projects = () => {
                           rel="noopener noreferrer" 
                           className="btn btn-secondary btn-sm github-btn"
                         >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
                           </svg>
-                          GitHub Repo ↗
+                          <span>Repository ↗</span>
                         </a>
                       )}
                     </div>
@@ -167,6 +182,21 @@ const Projects = () => {
               // Standard companion project card
               return (
                 <motion.div key={index} className="project-card" variants={cardVariants}>
+                  <div className="featured-badge-row">
+                    {project.title.includes('Inventory') && (
+                      <>
+                        <span className="domain-tag">Supply Chain & Operations</span>
+                        <span className="scale-tag">53,000+ Records</span>
+                      </>
+                    )}
+                    {project.title.includes('Automation') && (
+                      <>
+                        <span className="domain-tag">Automation & AI Pipelines</span>
+                        <span className="scale-tag">3,500+ Records</span>
+                      </>
+                    )}
+                  </div>
+
                   <div className="project-header">
                     <h3 className="project-title">{project.title}</h3>
                     <span className="project-date">{project.date}</span>
@@ -180,22 +210,32 @@ const Projects = () => {
 
                   <ul className="project-details">
                     {project.bullets.map((bullet, idx) => (
-                      <li key={idx}>{bullet}</li>
+                      <li key={idx}>
+                        <span className="bullet-chevron">›</span>
+                        <span className="bullet-text">{bullet}</span>
+                      </li>
                     ))}
                   </ul>
 
-                  {project.githubUrl && (
-                    <div className="project-actions">
+                  <div className="project-actions">
+                    {project.githubUrl ? (
                       <a 
                         href={project.githubUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="btn btn-secondary btn-sm"
                       >
-                        GitHub Repo ↗
+                        <span>GitHub Repository ↗</span>
                       </a>
-                    </div>
-                  )}
+                    ) : (
+                      <a 
+                        href="/contact" 
+                        className="btn btn-ghost btn-sm"
+                      >
+                        <span>Inquire About Solution ↗</span>
+                      </a>
+                    )}
+                  </div>
                 </motion.div>
               );
             })}
@@ -214,9 +254,9 @@ const Projects = () => {
             >
               <motion.div 
                 className="modal-container"
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                initial={{ opacity: 0, scale: 0.96, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                exit={{ opacity: 0, scale: 0.96, y: 15 }}
                 transition={{ duration: 0.25, ease: 'easeOut' }}
                 onClick={(e) => e.stopPropagation()}
               >
@@ -243,19 +283,19 @@ const Projects = () => {
                     className={`modal-tab ${activeTab === 'insights' ? 'active' : ''}`}
                     onClick={() => setActiveTab('insights')}
                   >
-                    💡 Key Insights
+                    <span className="tab-spark">✦</span> Key Insights
                   </button>
                   <button 
                     className={`modal-tab ${activeTab === 'charts' ? 'active' : ''}`}
                     onClick={() => setActiveTab('charts')}
                   >
-                    📈 Visualizations & Dashboards
+                    <span className="tab-spark">✦</span> Visualizations & Heatmaps
                   </button>
                   <button 
                     className={`modal-tab ${activeTab === 'methodology' ? 'active' : ''}`}
                     onClick={() => setActiveTab('methodology')}
                   >
-                    🛠 Methodology & SQL
+                    <span className="tab-spark">✦</span> Methodology & SQL
                   </button>
                 </div>
 
@@ -312,6 +352,8 @@ const Projects = () => {
                           src="/images/projects/credit_risk_heatmap.png" 
                           alt="Interactive Risk Heatmap" 
                           className="modal-chart-img"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </div>
 
@@ -323,6 +365,8 @@ const Projects = () => {
                             src="/images/projects/origination_volume_trend.png" 
                             alt="Origination Volume Trend" 
                             className="modal-chart-img"
+                            loading="lazy"
+                            decoding="async"
                           />
                         </div>
                         <div className="chart-item">
@@ -332,6 +376,8 @@ const Projects = () => {
                             src="/images/projects/macro_default_distribution.png" 
                             alt="Macro Default Distribution" 
                             className="modal-chart-img"
+                            loading="lazy"
+                            decoding="async"
                           />
                         </div>
                       </div>
@@ -384,10 +430,10 @@ const Projects = () => {
                       rel="noopener noreferrer" 
                       className="btn btn-primary btn-sm"
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: '6px' }}>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: '6px' }}>
                         <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
                       </svg>
-                      View Full Code on GitHub ↗
+                      <span>View Code on GitHub ↗</span>
                     </a>
                   )}
                   <button 

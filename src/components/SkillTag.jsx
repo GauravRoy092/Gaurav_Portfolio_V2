@@ -1,12 +1,11 @@
 import React from 'react';
 
-const SkillTag = ({ label, color }) => {
-  const style = color ? { borderLeftColor: color } : {};
-
+const SkillTag = ({ label, variant = 'default', prefix }) => {
   return (
-    <div className="skill-tag" style={style}>
-      {label}
-    </div>
+    <span className={`skill-tag skill-tag-${variant}`}>
+      {prefix && <span className="skill-tag-prefix">{prefix}</span>}
+      <span className="skill-tag-label">{label}</span>
+    </span>
   );
 };
 
