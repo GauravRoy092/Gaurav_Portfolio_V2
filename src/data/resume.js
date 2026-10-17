@@ -5,7 +5,7 @@ export const personalInfo = {
   location: 'Delhi, India',
   email: 'royg4250@gmail.com',
   phone: '07303528514',
-  portfolio: 'gauravroy-portfolio.netlify.app',
+  portfolio: 'gauravroyportfolio.netlify.app',
   github: 'GauravRoy092',
   linkedin: 'gaurav-roy-6580b222b'
 }
