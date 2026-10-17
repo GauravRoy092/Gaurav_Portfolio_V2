@@ -13,6 +13,8 @@ const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Experience = lazy(() => import('./pages/Experience'));
 const Projects = lazy(() => import('./pages/Projects'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Contact = lazy(() => import('./pages/Contact'));
 
 // Claude-style minimal loading fallback
@@ -70,6 +72,10 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/experience" element={<Experience />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/writing" element={<Blog />} />
+              <Route path="/writing/:slug" element={<BlogPost />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </AnimatePresence>

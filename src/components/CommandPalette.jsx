@@ -20,6 +20,7 @@ const CommandPalette = ({ isOpen, onClose }) => {
         { id: 'nav-about', label: 'Go to About & Systems', path: '/about', icon: '✦', hint: 'Profile' },
         { id: 'nav-experience', label: 'Go to Professional Experience', path: '/experience', icon: '✦', hint: 'Timeline' },
         { id: 'nav-projects', label: 'Go to Case Studies & Projects', path: '/projects', icon: '✦', hint: 'Case Studies' },
+        { id: 'nav-blog', label: 'Go to Blog & Engineering Notes', path: '/blog', icon: '✦', hint: 'Blog' },
         { id: 'nav-contact', label: 'Go to Direct Contact', path: '/contact', icon: '✦', hint: 'Dispatch' },
       ],
     },

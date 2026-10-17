@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
 
 const Navbar = ({ scrolled, onOpenCommandPalette }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
 
   const navLinks = [
     { path: '/', label: 'Overview' },
     { path: '/about', label: 'About' },
     { path: '/experience', label: 'Experience' },
     { path: '/projects', label: 'Case Studies' },
+    { path: '/blog', label: 'Blog' },
     { path: '/contact', label: 'Contact' },
   ];
+
+  const isLinkActive = (linkPath) => {
+    if (linkPath === '/') return location.pathname === '/';
+    if (linkPath === '/blog') {
+      return location.pathname.startsWith('/blog') || location.pathname.startsWith('/writing');
+    }
+    return location.pathname.startsWith(linkPath);
+  };
 
   return (
     <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`} role="navigation" aria-label="Main Navigation">
@@ -30,7 +40,7 @@ const Navbar = ({ scrolled, onOpenCommandPalette }) => {
               <NavLink 
                 key={link.path} 
                 to={link.path} 
-                className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                className={isLinkActive(link.path) ? 'nav-link active' : 'nav-link'}
               >
                 {link.label}
               </NavLink>
@@ -144,7 +154,7 @@ const Navbar = ({ scrolled, onOpenCommandPalette }) => {
               <NavLink 
                 key={link.path} 
                 to={link.path} 
-                className={({ isActive }) => isActive ? 'mobile-nav-link active' : 'mobile-nav-link'}
+                className={isLinkActive(link.path) ? 'mobile-nav-link active' : 'mobile-nav-link'}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span>{link.label}</span>

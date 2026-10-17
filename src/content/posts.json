@@ -1,0 +1,338 @@
+[
+  {
+    "id": "post-i-guess-linux-can-make-your-experience-b-0057",
+    "slug": "i-guess-linux-can-make-your-experience-better",
+    "title": "I guess Linux can make your Experience better",
+    "excerpt": "",
+    "date": "Oct 2026",
+    "publishedAt": "2026-10-13",
+    "readTime": "1 min",
+    "tags": [],
+    "thumbnail": "/images/feed/i-guess-linux-can-make-your-experience-better-gaurav-roy.jpg",
+    "draft": false,
+    "content": [
+      {
+        "type": "p",
+        "text": "*Originally shared on LinkedIn:* https://lnkd.in/p/dUnZztCN"
+      }
+    ],
+    "externalUrl": "https://lnkd.in/p/dUnZztCN"
+  },
+  {
+    "id": "post-things-you-need-to-get-hired-in-today-s--roaa",
+    "slug": "things-you-need-to-get-hired-in-today-s-market-unofficial-list",
+    "title": "Things you need to get hired in today's market (unofficial list) 😅",
+    "excerpt": "You can prep DSA for months, master system design, ship real projects, and still lose out because of timing, referrals, or plain luck.",
+    "date": "Oct 2026",
+    "publishedAt": "2026-10-14",
+    "readTime": "1 min",
+    "tags": [
+      "JobSearch",
+      "TechJobs",
+      "CareerAdvice",
+      "SoftwareEngineering",
+      "Hiring",
+      "Relatable"
+    ],
+    "thumbnail": "/images/feed/job-market-factors-beyond-merit-mohit-dubey-posted-on-the-to.jpg",
+    "draft": false,
+    "content": [
+      {
+        "type": "p",
+        "text": "1. DSA"
+      },
+      {
+        "type": "p",
+        "text": "2. System Design"
+      },
+      {
+        "type": "p",
+        "text": "3. Databases"
+      },
+      {
+        "type": "p",
+        "text": "4. AI / LLM"
+      },
+      {
+        "type": "p",
+        "text": "5. 2 Agarbatti"
+      },
+      {
+        "type": "p",
+        "text": "6. 5 Daily Prayers"
+      },
+      {
+        "type": "p",
+        "text": "7. Ek Nariyal"
+      },
+      {
+        "type": "p",
+        "text": "8. 100x Luck"
+      },
+      {
+        "type": "p",
+        "text": "9. Maa ki Duaayein"
+      },
+      {
+        "type": "p",
+        "text": "10. Baapu ka Aashirvaad"
+      },
+      {
+        "type": "p",
+        "text": "11. One-pager Resume"
+      },
+      {
+        "type": "p",
+        "text": "12. Jugaad in Connections 😎"
+      },
+      {
+        "type": "p",
+        "text": "Funny because it's true."
+      },
+      {
+        "type": "p",
+        "text": "You can prep DSA for months, master system design, ship real projects, and still lose out because of timing, referrals, or plain luck."
+      },
+      {
+        "type": "p",
+        "text": "The job market right now genuinely feels less like a meritocracy and more like a mix of skill + prayers + who-you-know."
+      },
+      {
+        "type": "p",
+        "text": "Curious — how much of your last offer came down to preparation vs. plain luck?"
+      },
+      {
+        "type": "p",
+        "text": "Follow Mohit Dubey for Tech, AI and career"
+      },
+      {
+        "type": "p",
+        "text": "Image credit: GeeksforGeeks"
+      },
+      {
+        "type": "p",
+        "text": "#JobSearch #TechJobs #CareerAdvice #SoftwareEngineering #Hiring #Relatable #JobMarket"
+      },
+      {
+        "type": "p",
+        "text": "*Originally shared on LinkedIn:* https://lnkd.in/p/dmCC-suh"
+      }
+    ],
+    "externalUrl": "https://lnkd.in/p/dmCC-suh"
+  },
+  {
+    "slug": "reading-a-robot-fleet-through-its-logs",
+    "title": "Reading a Robot Fleet Through Its Logs: Telemetry as a Diagnostic Instrument",
+    "excerpt": "Bot activity logs are an under-exploited diagnostic surface. A field notes walkthrough of how Linux-side log analytics turned raw telemetry into predictive maintenance signals across a robotic fleet.",
+    "date": "Oct 2026",
+    "publishedAt": "2026-10-06",
+    "readTime": "6 min",
+    "likes": 87,
+    "tags": [
+      "Robotics",
+      "Telemetry",
+      "Linux",
+      "Data Pipelines"
+    ],
+    "featured": true,
+    "content": [
+      {
+        "type": "p",
+        "text": "A warehouse robot fleet generates an extraordinary volume of passive telemetry — motor currents, encoder drift, battery curves, task latencies, fault codes. Most of it is written to logs and never read again. At GreyOrange, I started treating those logs as a *diagnostic instrument* rather than an audit trail, and the results reshaped how we approach predictive maintenance."
+      },
+      {
+        "type": "h2",
+        "text": "The Logs Were Already There"
+      },
+      {
+        "type": "p",
+        "text": "The first insight was almost embarrassingly simple: the data we needed already existed. Bot activity logs at scale — structured, timestamped, and machine-generated — are far cleaner than most \"analytics datasets\" people pay to acquire. The real work was not collection. It was **making the signal legible**."
+      },
+      {
+        "type": "p",
+        "text": "Every diagnostic session started the same way on the Linux side: locate the log volume, understand the rotation policy, and reconstruct a timeline. A typical triage sequence looks like this:"
+      },
+      {
+        "type": "code",
+        "lang": "bash",
+        "code": "# Reconstruct a bot's day from rotated logs\nzgrep -h \"BOT-4471\" /var/log/fleet/activity.log.*.gz \\\n  | awk -F'|' '{print $1, $4, $7}' \\\n  | sort > bot-4471-timeline.txt\n\n# Fault-code frequency across the fleet (last 24h)\nfind /var/log/fleet -name \"*.log\" -mtime -1 -exec \\\n  grep -hoE \"FAULT\\[[A-Z_]+\\]\" {} \\; \\\n  | sort | uniq -c | sort -rn | head -20"
+      },
+      {
+        "type": "h2",
+        "text": "From Reactive to Predictive"
+      },
+      {
+        "type": "p",
+        "text": "The shift happened when we stopped asking \"why did this bot fail?\" and started asking \"what did the telemetry look like in the hours *before* bots like this one failed?\" That reframing turns log analytics from a forensic tool into a **predictive one**."
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Encoder drift creep preceded mechanical faults by hours — early enough to schedule intervention during natural idle windows.",
+          "Battery voltage sag under load, not absolute charge, was the stronger predictor of mid-task stalls.",
+          "Task latency histograms separated network congestion from genuine compute exhaustion almost instantly — two faults that present identically to operators."
+        ]
+      },
+      {
+        "type": "quote",
+        "text": "Observability is not about having more dashboards. It is about shortening the distance between a raw signal and a confident decision.",
+        "cite": "Field notes, fleet diagnostics review"
+      },
+      {
+        "type": "h2",
+        "text": "What I Would Tell My Past Self"
+      },
+      {
+        "type": "callout",
+        "title": "Principle",
+        "text": "Standardize the log schema before you scale the fleet, not after. Every hour spent retro-fitting structure onto unstructured logs is an hour of signal permanently lost to rotation."
+      },
+      {
+        "type": "p",
+        "text": "The tooling does not need to be exotic. Linux utilities, a disciplined schema, and a habit of writing down what each signal *meant* in hindsight — that combination took the fleet from reactive firefighting to scheduled, evidence-driven maintenance."
+      }
+    ],
+    "id": "post-reading-a-robot-fleet-through-its-logs",
+    "draft": false
+  },
+  {
+    "slug": "linux-tuning-lessons-from-the-field",
+    "title": "Linux Tuning Lessons from the Field: Small Knobs, Measurable Throughput",
+    "excerpt": "Systems optimization is rarely about heroic re-architecture. A collection of small, verified tuning decisions that compounded into measurable reliability gains on production machines.",
+    "date": "Sept 2026",
+    "publishedAt": "2026-09-14",
+    "readTime": "5 min",
+    "likes": 54,
+    "tags": [
+      "Linux",
+      "Systems",
+      "Performance"
+    ],
+    "content": [
+      {
+        "type": "p",
+        "text": "There is a particular satisfaction in systems work: changing one line in a configuration file and watching a measurable metric move. Not guessed — **measured**. This post collects the tuning decisions that repeatedly earned their keep on production Linux machines."
+      },
+      {
+        "type": "h2",
+        "text": "Measure First, Tune Second"
+      },
+      {
+        "type": "p",
+        "text": "Every tuning session began with a baseline. `iostat`, `vmstat`, and `pidstat` formed the core loop — three tools, run for a full workload cycle, before touching anything. The number of \"performance problems\" that dissolved under a five-minute baseline review is remarkable."
+      },
+      {
+        "type": "code",
+        "lang": "bash",
+        "code": "# Baseline: disk pressure + memory behavior across a full cycle\niostat -xz 5 12 > baseline-io.txt\nvmstat 5 12 > baseline-vm.txt\n\n# Who is actually waiting on I/O?\npidstat -d 5 | sort -k4 -rn | head"
+      },
+      {
+        "type": "h2",
+        "text": "The Knobs That Paid for Themselves"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**I/O scheduler selection** — switching throughput-oriented workloads from `cfq` to `deadline` eliminated latency spikes that no amount of application tuning had touched.",
+          "**Log rotation discipline** — uncompressed, unrotated logs were quietly becoming the fleet's largest I/O consumer. Rotation plus compression was the cheapest \"upgrade\" we ever shipped.",
+          "**vm.swappiness sanity** — the default of 60 was wrong for every telemetry node we ran. A conservative value kept hot pages in memory where they belonged.",
+          "**ulimit hygiene** — file descriptor ceilings set for a desktop world caused cascading failures exactly when load was highest."
+        ]
+      },
+      {
+        "type": "quote",
+        "text": "Default configurations are designed to be safe everywhere, which means they are optimal almost nowhere.",
+        "cite": "Field notes"
+      },
+      {
+        "type": "h2",
+        "text": "The Compounding Effect"
+      },
+      {
+        "type": "p",
+        "text": "Individually, each of these is a small win. Together, they changed the character of the system: fewer stalls, fewer mystery slowdowns, and — critically — **telemetry that could be trusted**, because the logging path itself was no longer contending for the same resources it was measuring."
+      },
+      {
+        "type": "callout",
+        "title": "Takeaway",
+        "text": "Optimization culture matters more than any single tuning value. Baseline, change one variable, re-measure, record. Repeat until the machine stops surprising you."
+      }
+    ],
+    "id": "post-linux-tuning-lessons-from-the-field",
+    "draft": false
+  },
+  {
+    "slug": "what-2-million-loans-taught-me-about-data",
+    "title": "What 2.26 Million Loans Taught Me About Asking Better Questions",
+    "excerpt": "The most valuable output of the consumer credit case study was not any single chart — it was a set of questions that survived contact with the data. Notes on analytical humility at scale.",
+    "date": "Aug 2026",
+    "publishedAt": "2026-08-21",
+    "readTime": "7 min",
+    "likes": 63,
+    "thumbnail": "/images/projects/credit_risk_heatmap.png",
+    "tags": [
+      "Data Analytics",
+      "SQL",
+      "Case Study"
+    ],
+    "content": [
+      {
+        "type": "p",
+        "text": "Over a long analytical project on a 2.26-million-record consumer credit dataset, I learned that the difference between a competent analyst and a dangerous one is not SQL fluency. It is **the habit of interrogating your own conclusions** before anyone else gets the chance."
+      },
+      {
+        "type": "h2",
+        "text": "The Paradoxes Were the Real Deliverable"
+      },
+      {
+        "type": "p",
+        "text": "The headline findings were deliberately counter-intuitive: the *Volume vs. Risk Paradox* (the highest-volume loan category was not the highest-risk one), the *Income Insulation Myth* (high income did not proportionally protect against default), and the *Collateral Discrepancy* (renters defaulted at meaningfully higher rates than mortgage holders)."
+      },
+      {
+        "type": "p",
+        "text": "Each of these survived because it was attacked from multiple angles before it was presented:"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Segment re-slicing** — does the pattern hold across income brackets, vintages, and loan purposes independently?",
+          "**Denominator honesty** — are we comparing rates or raw counts, and does the choice flatter the conclusion?",
+          "**Survival bias checks** — is the dataset's \"fully paid\" population hiding loans too recent to have failed yet?"
+        ]
+      },
+      {
+        "type": "quote",
+        "text": "A finding that only appears in one slice of the data is not a finding. It is a hypothesis wearing a finding's clothes.",
+        "cite": "Analytical field notes"
+      },
+      {
+        "type": "h2",
+        "text": "SQL as a Thinking Tool"
+      },
+      {
+        "type": "p",
+        "text": "Writing the aggregation queries forced clarity that no amount of staring at a dataframe provided. When you have to define an income bracket *in code* — with explicit boundaries and an explicit reason for them — vague thinking has nowhere to hide."
+      },
+      {
+        "type": "code",
+        "lang": "sql",
+        "code": "-- Income tiers defined explicitly, not assumed\nCASE\n  WHEN annual_inc < 40000  THEN 'T1: <40K'\n  WHEN annual_inc < 75000  THEN 'T2: 40-75K'\n  WHEN annual_inc < 120000 THEN 'T3: 75-120K'\n  ELSE 'T4: 120K+'\nEND AS income_tier"
+      },
+      {
+        "type": "h2",
+        "text": "The Meta-Lesson"
+      },
+      {
+        "type": "callout",
+        "title": "Takeaway",
+        "text": "The dashboard was the least important artifact. The durable output was a mental checklist: define the denominator, attack the slice, name the bias, then — and only then — make the chart."
+      },
+      {
+        "type": "p",
+        "text": "Data at scale does not reward confidence. It rewards **disciplined curiosity** — the willingness to let a beautiful hypothesis die under a clean query."
+      }
+    ],
+    "id": "post-what-2-million-loans-taught-me-about-data",
+    "draft": false
+  }
+]

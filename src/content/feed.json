@@ -1,0 +1,17 @@
+[
+  "https://medium.com/write-a-catalyst/a-z-of-essential-artificial-intelligence-concepts-7a575a4180ab",
+  "https://medium.com/aws-in-plain-english/the-cybersecurity-industry-is-entering-its-third-era-c82ad251ff54",
+  {
+    "url": "https://www.linkedin.com/feed/update/urn:li:activity:7517035950812667905/",
+    "note": "My LinkedIn post — why SQL fundamentals still matter, and the 3-resource stack that made it click.",
+    "date": "Oct 2026",
+    "publishedAt": "2026-10-17",
+    "likes": 2,
+    "tags": [
+      "SQL"
+    ],
+    "pinned": true,
+    "title": "Nobody hypes up SQL, yet it quietly runs the show across Data Analytics, Data Science, Data Engineering, and even DevOps.",
+    "thumbnail": "/images/feed/linkedin-sql-post.jpg"
+  }
+]

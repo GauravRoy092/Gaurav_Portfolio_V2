@@ -1,0 +1,25 @@
+# Netlify Edge CDN & Browser Cache Configuration
+
+# Vite hashed JS and CSS assets (never change once hashed)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static images and icons
+/images/*
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+/favicon.svg
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+# HTML always fresh to guarantee users instantly see new builds
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Basic security headers across all routes
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
