@@ -35,3 +35,8 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Resume source
 Gaurav_Resume.pdf
+
+# Local Portfolio Studio — backed up in this repo, never deployed.
+# Netlify only publishes dist/ (see netlify.toml). Local-only artifacts:
+adminpannel/.backups/
+adminpannel/.activity.json
