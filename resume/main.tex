@@ -1,0 +1,150 @@
+% =====================================================================
+%  GAURAV ROY - Data Analyst Resume (Google-targeted, one page)
+%  Compile: pdfLaTeX (Overleaf default)  |  Paper: A4, 10pt
+%
+%  HOW TO USE: copy this entire file into Overleaf > New Project >
+%  Blank Project > main.tex, then press Recompile. No other files
+%  or packages are needed. See resume/README.md for details.
+%
+%  SOURCE OF TRUTH: myportfoliowebsite/src/data/resume.js
+%                   myportfoliowebsite/src/content/projects.json
+%  Regenerate this file when those change.
+% =====================================================================
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,left=0.55in,right=0.55in,top=0.40in,bottom=0.30in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome5}   % icons for the contact/links line
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ---------------- helpers ----------------
+\newcommand{\sep}{\;$\cdot$\;}
+
+% title / subtitle / right-of-line-2 / right-of-line-1 (dates)
+\newcommand{\entry}[4]{%
+  \textbf{#1} \hfill \textbf{\small #4}\\
+  \textit{\small #2} \hfill \textit{\small #3}\par\vspace{0.5pt}%
+}
+
+\newcommand{\rbullets}[1]{%
+  {\small
+  \begin{itemize}[leftmargin=1.1em,itemsep=0.5pt,topsep=1.5pt,parsep=0pt,partopsep=0pt,label=\textbullet]
+    #1
+  \end{itemize}}%
+}
+
+\titleformat{\section}{\normalsize\bfseries\uppercase}{}{0em}{}%
+  [\vspace{-0.55em}\rule{\textwidth}{0.6pt}]
+\titlespacing*{\section}{0pt}{0.7em}{0.35em}
+
+\begin{document}
+
+% ------------------------------ HEADER ------------------------------
+\begin{center}
+  {\Huge\bfseries Gaurav Roy}\\[3pt]
+  {\small \textbf{Data Analyst} \textemdash{} SQL \sep Python (Pandas) \sep Power BI \sep Advanced Excel \sep Google Certified}\\[3pt]
+  {\small \faMapMarker*~Delhi, India \sep \faPhone~+91 73035 28514 \sep \href{mailto:royg4250@gmail.com}{\faEnvelope~royg4250@gmail.com}}\\[1.5pt]
+  {\small \href{https://gauravroyportfolio.netlify.app}{\faGlobe~Portfolio} \sep
+          \href{https://github.com/GauravRoy092}{\faGithub~GitHub} \sep
+          \href{https://www.linkedin.com/in/gaurav-roy-6580b222b}{\faLinkedin~LinkedIn}}
+\end{center}
+\vspace{1pt}
+
+% ------------------------------ SUMMARY -----------------------------
+\section{Summary}
+Data analyst with 21+ months across robotics telemetry, retail operations, and enterprise data quality. Query multi-million-row datasets in SQL (2.26M+ records analyzed), run exploratory analysis in Python (Pandas), and ship leadership-facing dashboards in Power BI. Google Data Analytics certified; sustained 99\%+ data accuracy across 5,000+ validated records.
+
+% ------------------------------ SKILLS ------------------------------
+\section{Skills}
+{\small
+% WHEN PROJECT 03 (Looker Studio) SHIPS: add ", Looker Studio" after "Power BI" below.
+\textbf{Languages \& Tools:} SQL (joins, aggregations, segmentation), Python (Pandas, Matplotlib, Seaborn, Plotly), Power BI, Advanced Excel, Google Sheets, Jupyter, Jira\\[1pt]
+% WHEN PROJECT 02 (A/B test) SHIPS: append ", A/B Testing & Experimentation" to the end of this line.
+\textbf{Data Techniques:} Exploratory Data Analysis (EDA), Data Cleaning \& Validation, Data Integrity Checks, Segmentation \& Cohort Analysis, KPI Reporting, Trend \& Distribution Analysis, Dashboarding\\[1pt]
+% WHEN YOU HAVE SOLID SQL: upgrade the Tools line to "SQL (joins, aggregations, CTEs, window functions, segmentation)".
+\textbf{Domain Exposure:} Consumer Credit Risk, Retail \& Business Operations, Fleet/Telemetry Analytics, Enterprise Data Quality\\[1pt]
+\textbf{Professional:} Stakeholder Reporting, Data Storytelling, Cross-functional Collaboration, Technical Documentation, Agile Workflows
+\par}
+
+% ---------------------------- EXPERIENCE ----------------------------
+\section{Experience}
+
+% NOTE: the text after the em dash in job titles below is a display-only
+% focus label, not an official title. Delete the "\textemdash{} ..." part
+% of any \entry if you prefer titles exactly as on record.
+\entry{GreyOrange}{Robotics Engineer \textemdash{} Telemetry Analytics (Full-time)}{Gurugram, India (Hybrid)}{Feb 2026 -- Present}
+\rbullets{
+  \item Analyze high-volume system telemetry and activity logs to surface reliability and throughput trends, driving measurable improvements in fleet performance KPIs.
+  \item Build log-analysis pipelines that isolate behavioral patterns over time, feeding predictive-maintenance strategy and fleet performance metrics.
+  \item Partner with cross-functional engineering pods to embed analytics into production systems, enabling real-time observability for operational stakeholders.
+}
+\vspace{2pt}
+
+\entry{DotPe}{Business Operations Associate \textemdash{} Data \& Reporting (Internship)}{Gurugram, India (Hybrid)}{May 2025 -- Nov 2025}
+\rbullets{
+  \item Built SQL + Power BI dashboards consolidating 53,000+ records into business intelligence that shaped operational optimization strategy for leadership.
+  \item Validated 5,000+ operational records across distributed platforms, implementing data-integrity checks that maintained 99\%+ accuracy.
+  \item Delivered data-driven insights contributing to measurable efficiency gains across 1,000+ retail outlets.
+}
+\vspace{2pt}
+
+\entry{Engineers India Limited (EIL)}{Vocational Trainee \textemdash{} Data Validation \& Systems Support}{Gurugram, India}{Apr 2023 -- Sept 2023}
+\rbullets{
+  \item Validated requirements and records for 5,000+ entries across 3 system modules, improving data integrity by 10\% through systematic quality assurance.
+  \item Documented process flows and data-integration designs for 2 enterprise projects in Jira, and worked with 10+ internal and external teams to resolve validation gaps.
+}
+
+% -------------------------- DATA PROJECTS ---------------------------
+\section{Data Projects}
+
+\entry{Consumer Credit Exposure \& Portfolio Risk Diagnostics}{Python \sep SQL \sep Pandas \sep Matplotlib \sep Seaborn \sep Plotly Express \sep Jupyter}{\href{https://github.com/GauravRoy092/credit_portfolio_exposure}{Code}}{Sept 2026}
+\rbullets{
+  \item Engineered SQL aggregation pipelines across 2.26M+ consumer loan records, segmenting borrowers into income, housing, and loan-purpose cohorts for default-risk analysis.
+  \item Exposed a volume-vs-risk paradox \textemdash{} debt consolidation drove origination volume while small-business loans showed the highest default risk (\textasciitilde30\% charge-off).
+  \item Disproved the ``income insulation'' assumption and quantified a \textasciitilde5\% default-rate gap between renters and mortgage holders; shipped an interactive Plotly and ipywidgets dashboard for real-time portfolio exposure.
+}
+
+% ============ PROJECT 02 - ENABLE WHEN BUILT (A/B testing) ==========
+% Owner: you. Delete the leading "%" on every line below once the study
+% is shipped, then update dates and any numbers to match reality.
+% \vspace{2pt}
+% \entry{A/B Test: [Experiment Name]}{A/B Testing \sep Python \sep SciPy \sep Pandas}{}{Month YYYY}
+% \rbullets{
+%   \item Stated a testable hypothesis and split design (control vs. variant), sized the required sample, and evaluated the result for a statistically significant difference.
+%   \item Translated the outcome into a ship / no-ship recommendation with confidence level and observed effect size.
+% }
+% =====================================================================
+
+% ============ PROJECT 03 - ENABLE WHEN BUILT (Looker Studio) ========
+% Owner: you. Delete the leading "%" on every line below once the
+% dashboard is published, then paste its public link into the "Live" slot.
+% \vspace{2pt}
+% \entry{Interactive KPI Dashboard \textemdash{} [Dataset/Theme]}{Looker Studio \sep Google Sheets \sep SQL}{}{Month YYYY}
+% \rbullets{
+%   \item Designed an interactive Looker Studio dashboard with filter controls and drill-downs over [N] records, tracking [key KPIs].
+%   \item Connected the data layer via SQL/Sheets queries, with computed fields and time-series breakdowns for stakeholder self-service.
+% }
+% =====================================================================
+
+% --------------------- EDUCATION & CERTIFICATIONS -------------------
+\section{Education \& Certifications}
+
+\textbf{B.Tech, Electronics \& Communication Engineering (ECE)} \hfill {\small 2021 -- 2025}\\
+{\small GTBIT, GGSIPU Delhi} \hfill {\small CGPA: 7.71 / 10}\\[2pt]
+
+% VERIFY: uncomment the coursework line below ONLY if Probability &
+% Statistics (or an equivalent) appears on your transcript.
+% {\small Coursework: Probability \& Statistics, Data Analysis}\\[2pt]
+
+\textbf{Google Data Analytics Professional Certificate} \hfill {\small Sept 2026}\\
+{\small Google \sep Data Cleaning \sep SQL \sep R \& Python \sep Data Visualization \sep
+  \href{https://drive.google.com/file/d/14Zjb03LreuKHPV159e3-3ucDxii6RKds/view?usp=sharing}{Verify credential}}
+
+\end{document}
